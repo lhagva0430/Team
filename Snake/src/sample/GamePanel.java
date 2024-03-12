@@ -45,30 +45,31 @@ public class GamePanel extends JPanel implements ActionListener{
         if(running) {
 
             g.setColor(Color.red);
-            g.fillArc(appleX, appleY, UNIT_SIZE, UNIT_SIZE - 5, 0, 180);
+            g.setColor(Color.red);
+            g.fillArc(appleX, appleY + 10, UNIT_SIZE, UNIT_SIZE - 5, 0, 180);
             
             g.setColor(new Color(249, 219, 195));
-            g.fillArc(appleX + 1, appleY + 1, UNIT_SIZE - 2, UNIT_SIZE - 7, 0, 180);
+            g.fillArc(appleX + 1, appleY + 11, UNIT_SIZE - 2, UNIT_SIZE - 7, 0, 180);
              
             g.setColor(Color.red);
-            g.fillOval(appleX + 10, appleY - 3, 8, 8);
+            g.fillOval(appleX + 10, appleY + 9, 8, 8);
             
             g.setColor(new Color(249, 219, 195));
-            g.fillOval(appleX + 12, appleY - 2, 7, 7);
+            g.fillOval(appleX + 12, appleY + 8, 7, 7);
             
             g.setColor(new Color(242, 181, 92));
-            g.drawArc(appleX + 5, appleY + 7, 10, 4, 0, 180);
+            g.drawArc(appleX + 5, appleY + 17, 10, 4, 0, 180);
             
             g.setColor(Color.black);
-            g.fillOval(appleX + 18, appleY + 4, 3, 3);
+            g.fillOval(appleX + 18, appleY + 14, 3, 3);
             
             g.setColor(Color.red);
-            g.fillArc(appleX, appleY + 8, 9, 5, 0, 180);
-            g.fillArc(appleX + 12, appleY + 8, 7, 5, 0, 180);
+            g.fillArc(appleX, appleY + 18, 9, 5, 0, 180);
+            g.fillArc(appleX + 12, appleY + 18, 7, 5, 0, 180);
             
             g.setColor(new Color(194, 134, 84));
-            g.fillRect(appleX - 9, appleY + 9, 10, 1);
-            g.fillRect(appleX + 23, appleY + 7, 1, 1);
+            g.fillRect(appleX - 9, appleY + 19, 10, 1);
+            g.fillRect(appleX + 23, appleY + 17, 1, 1);
             
             for(int i = 0; i< bodyParts;i++) {
                 if(i == 0) {
