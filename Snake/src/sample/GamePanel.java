@@ -73,14 +73,20 @@ public class GamePanel extends JPanel implements ActionListener{
             
             for(int i = 0; i< bodyParts;i++) {
                 if(i == 0) {
-                    g.setColor(Color.green);
-                    g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+                    g.setColor(new Color(45,180,0));
+                    g.fillOval(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+                    g.setColor(Color.black);
+                    g.fillOval(x[i] + 3, y[i] + 5, 5, 5);
+                    g.fillOval(x[i] + 17, y[i] + 5, 5, 5);
                 }
                 else {
                     g.setColor(new Color(45,180,0));
-                    g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+                    g.fillArc(x[i], y[i], UNIT_SIZE, 10, 0, 180);
+                    g.fillRect(x[i], y[i] + 5, UNIT_SIZE, UNIT_SIZE - 10);
+                    g.fillArc(x[i], y[i] + 15, UNIT_SIZE, 10, 180, 180);
                 }
             }
+            
             g.setColor(Color.red);
             g.setFont( new Font("Ink Free",Font.BOLD, 40));
             FontMetrics metrics = getFontMetrics(g.getFont());
