@@ -4,13 +4,15 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.Random;
+import java.awt.event.MouseListener;
 
-public class GamePanel extends JPanel implements ActionListener, MouseListener{
+public class GamePanel extends JPanel implements ActionListener{
 	
-    static final int SCREEN_WIDTH = 1000;
-    static final int SCREEN_HEIGHT = 500;
+	static final int Button1 = 0;
+    static final int SCREEN_WIDTH = 700;
+    static final int SCREEN_HEIGHT = 650;
     static final int UNIT_SIZE = 25;
-    static final int DELAY = 175;
+    static final int DELAY = 200;
     final int x[] = new int[SCREEN_WIDTH/UNIT_SIZE];
     final int y[] = new int[SCREEN_HEIGHT/UNIT_SIZE];
     int bodyParts = 6;
@@ -28,8 +30,11 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener{
         this.setBackground(Color.black);
         this.setFocusable(true);
         this.addKeyListener(new MyKeyAdapter());
+        this.addMouseListener(new MyMouseAdapter());
         startGame();
     }
+    
+
     public void startGame() {
         newApple();
         running = true;
@@ -131,19 +136,23 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener{
         }
         //check if head touches left border
         if(x[0] < 0) {
-            running = false;
+        	y[0]=y[0];
+        	x[0]=SCREEN_WIDTH;
         }
         //check if head touches right border
         if(x[0] > SCREEN_WIDTH) {
-            running = false;
+        	y[0]=y[0];
+        	x[0]=0;
         }
         //check if head touches top border
         if(y[0] < 0) {
-            running = false;
+        	x[0]=x[0];
+        	y[0]=SCREEN_HEIGHT;
         }
         //check if head touches bottom border
         if(y[0] > SCREEN_HEIGHT) {
-            running = false;
+        	x[0]=x[0];
+        	y[0]=0;
         }
 
         if(!running) {
@@ -166,13 +175,13 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener{
     public void actionPerformed(ActionEvent e) {
 
         if(running) {
+        	
             move();
             checkApple();
             checkCollisions();
         }
         repaint();
     }
-
     public class MyKeyAdapter extends KeyAdapter{
         @Override
         public void keyPressed(KeyEvent e) {
@@ -197,9 +206,16 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener{
                         direction = 'D';
                     }
                     break;
+                case KeyEvent.VK_ENTER:
+                	break;
             }
         }
+        
     }
+    
+    public class MyMouseAdapter extends MouseAdapter{
+        
+    
     @SuppressWarnings("deprecation")
     @Override
 	public void mouseClicked(MouseEvent e) {
@@ -207,36 +223,28 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener{
 		int ButtonClickMask =e.getModifiers();
 		if((ButtonClickMask & InputEvent.BUTTON1_MASK)==
 				InputEvent.BUTTON1_MASK) {
-			if(direction != 'R') {
+			if(direction == 'D' ) {
                 direction = 'L';
+            }else if(direction== 'L'){
+                direction = 'U';
+            }else if(direction == 'U'){
+                direction = 'R';
+            }else if(direction == 'R'){
+                direction = 'D';
             }
-			
 		}
 		if((ButtonClickMask & InputEvent.BUTTON3_MASK)==
 				InputEvent.BUTTON3_MASK) {
-			if(direction != 'L') {
+			if(direction == 'D') {
                 direction = 'R';
+            }else if(direction == 'R'){
+                direction = 'U';
+            }else if(direction == 'U'){
+                direction = 'L';
+            }else if(direction == 'L'){
+                direction = 'D';
             }
 		}
 	}
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+}
 }
