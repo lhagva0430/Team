@@ -5,10 +5,10 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.Random;
 
-public class GamePanel extends JPanel implements ActionListener{
-
-    static final int SCREEN_WIDTH = 500;
-    static final int SCREEN_HEIGHT = 350;
+public class GamePanel extends JPanel implements ActionListener, MouseListener{
+	
+    static final int SCREEN_WIDTH = 1000;
+    static final int SCREEN_HEIGHT = 500;
     static final int UNIT_SIZE = 25;
     static final int DELAY = 175;
     final int x[] = new int[SCREEN_WIDTH/UNIT_SIZE];
@@ -49,7 +49,6 @@ public class GamePanel extends JPanel implements ActionListener{
             
             g.setColor(new Color(249, 219, 195));
             g.fillArc(appleX + 1, appleY + 1, UNIT_SIZE - 2, UNIT_SIZE - 7, 0, 180);
-             
             g.setColor(Color.red);
             g.fillOval(appleX + 10, appleY - 3, 8, 8);
             
@@ -201,4 +200,43 @@ public class GamePanel extends JPanel implements ActionListener{
             }
         }
     }
+    @SuppressWarnings("deprecation")
+    @Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		int ButtonClickMask =e.getModifiers();
+		if((ButtonClickMask & InputEvent.BUTTON1_MASK)==
+				InputEvent.BUTTON1_MASK) {
+			if(direction != 'R') {
+                direction = 'L';
+            }
+			
+		}
+		if((ButtonClickMask & InputEvent.BUTTON3_MASK)==
+				InputEvent.BUTTON3_MASK) {
+			if(direction != 'L') {
+                direction = 'R';
+            }
+		}
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }
