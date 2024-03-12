@@ -45,7 +45,10 @@ public class GamePanel extends JPanel implements ActionListener{
         if(running) {
 
             g.setColor(Color.red);
+<<<<<<< HEAD
             g.setColor(Color.red);
+=======
+>>>>>>> branch 'master' of https://github.com/lhagva0430/Team.git
             g.fillArc(appleX, appleY + 10, UNIT_SIZE, UNIT_SIZE - 5, 0, 180);
             
             g.setColor(new Color(249, 219, 195));
@@ -73,12 +76,17 @@ public class GamePanel extends JPanel implements ActionListener{
             
             for(int i = 0; i< bodyParts;i++) {
                 if(i == 0) {
-                    g.setColor(Color.green);
-                    g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+                    g.setColor(new Color(45,180,0));
+                    g.fillOval(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+                    g.setColor(Color.black);
+                    g.fillOval(x[i] + 3, y[i] + 5, 5, 5);
+                    g.fillOval(x[i] + 17, y[i] + 5, 5, 5);
                 }
                 else {
                     g.setColor(new Color(45,180,0));
-                    g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+                    g.fillArc(x[i], y[i], UNIT_SIZE, 10, 0, 180);
+                    g.fillRect(x[i], y[i] + 5, UNIT_SIZE, UNIT_SIZE - 10);
+                    g.fillArc(x[i], y[i] + 15, UNIT_SIZE, 10, 180, 180);
                 }
             }
             g.setColor(Color.red);
@@ -191,8 +199,7 @@ public class GamePanel extends JPanel implements ActionListener{
                     break;
                 case KeyEvent.VK_UP:
                     if(direction != 'D') {
-                        direction = 'U';
-                    }
+                        direction = 'U';                    }
                     break;
                 case KeyEvent.VK_DOWN:
                     if(direction != 'U') {
