@@ -7,8 +7,8 @@ import java.util.Random;
 
 public class GamePanel extends JPanel implements ActionListener{
 
-    static final int SCREEN_WIDTH = 500;
-    static final int SCREEN_HEIGHT = 350;
+    static final int SCREEN_WIDTH = 700;
+    static final int SCREEN_HEIGHT = 550;
     static final int UNIT_SIZE = 25;
     static final int DELAY = 175;
     final int x[] = new int[SCREEN_WIDTH/UNIT_SIZE];
@@ -45,30 +45,31 @@ public class GamePanel extends JPanel implements ActionListener{
         if(running) {
 
             g.setColor(Color.red);
-            g.fillArc(appleX, appleY, UNIT_SIZE, UNIT_SIZE - 5, 0, 180);
+            g.setColor(Color.red);
+            g.fillArc(appleX, appleY + 10, UNIT_SIZE, UNIT_SIZE - 5, 0, 180);
             
             g.setColor(new Color(249, 219, 195));
-            g.fillArc(appleX + 1, appleY + 1, UNIT_SIZE - 2, UNIT_SIZE - 7, 0, 180);
+            g.fillArc(appleX + 1, appleY + 11, UNIT_SIZE - 2, UNIT_SIZE - 7, 0, 180);
              
             g.setColor(Color.red);
-            g.fillOval(appleX + 10, appleY - 3, 8, 8);
+            g.fillOval(appleX + 10, appleY + 9, 8, 8);
             
             g.setColor(new Color(249, 219, 195));
-            g.fillOval(appleX + 12, appleY - 2, 7, 7);
+            g.fillOval(appleX + 12, appleY + 8, 7, 7);
             
             g.setColor(new Color(242, 181, 92));
-            g.drawArc(appleX + 5, appleY + 7, 10, 4, 0, 180);
+            g.drawArc(appleX + 5, appleY + 17, 10, 4, 0, 180);
             
             g.setColor(Color.black);
-            g.fillOval(appleX + 18, appleY + 4, 3, 3);
+            g.fillOval(appleX + 18, appleY + 14, 3, 3);
             
             g.setColor(Color.red);
-            g.fillArc(appleX, appleY + 8, 9, 5, 0, 180);
-            g.fillArc(appleX + 12, appleY + 8, 7, 5, 0, 180);
+            g.fillArc(appleX, appleY + 18, 9, 5, 0, 180);
+            g.fillArc(appleX + 12, appleY + 18, 7, 5, 0, 180);
             
             g.setColor(new Color(194, 134, 84));
-            g.fillRect(appleX - 9, appleY + 9, 10, 1);
-            g.fillRect(appleX + 23, appleY + 7, 1, 1);
+            g.fillRect(appleX - 9, appleY + 19, 10, 1);
+            g.fillRect(appleX + 23, appleY + 17, 1, 1);
             
             for(int i = 0; i< bodyParts;i++) {
                 if(i == 0) {
@@ -124,25 +125,25 @@ public class GamePanel extends JPanel implements ActionListener{
         }
     }
     public void checkCollisions() {
-        //checks if head collides with body
+       
         for(int i = bodyParts;i>0;i--) {
             if((x[0] == x[i])&& (y[0] == y[i])) {
                 running = false;
             }
         }
-        //check if head touches left border
+      
         if(x[0] < 0) {
             running = false;
         }
-        //check if head touches right border
+        
         if(x[0] > SCREEN_WIDTH) {
             running = false;
         }
-        //check if head touches top border
+       
         if(y[0] < 0) {
             running = false;
         }
-        //check if head touches bottom border
+
         if(y[0] > SCREEN_HEIGHT) {
             running = false;
         }
@@ -152,18 +153,18 @@ public class GamePanel extends JPanel implements ActionListener{
         }
     }
     public void gameOver(Graphics g) {
-        //Score
+    
         g.setColor(Color.red);
         g.setFont( new Font("Ink Free",Font.BOLD, 40));
         FontMetrics metrics1 = getFontMetrics(g.getFont());
         g.drawString("Score: "+applesEaten, (SCREEN_WIDTH - metrics1.stringWidth("Score: "+applesEaten))/2, g.getFont().getSize());
-        //Game Over text
+     
         g.setColor(Color.red);
         g.setFont( new Font("Ink Free",Font.BOLD, 75));
         FontMetrics metrics2 = getFontMetrics(g.getFont());
         g.drawString("Game Over", (SCREEN_WIDTH - metrics2.stringWidth("Game Over"))/2, SCREEN_HEIGHT/2);
     }
-    @Override
+
     public void actionPerformed(ActionEvent e) {
 
         if(running) {
@@ -175,7 +176,7 @@ public class GamePanel extends JPanel implements ActionListener{
     }
 
     public class MyKeyAdapter extends KeyAdapter{
-        @Override
+    
         public void keyPressed(KeyEvent e) {
             switch(e.getKeyCode()) {
                 case KeyEvent.VK_LEFT:
